@@ -1,10 +1,11 @@
 <?php
 
 use App\App;
-use App\Interfaces\Logger;
 use App\ServiceProviders\DraugiemApiProvider;
 use App\ServiceProviders\LoggingProvider;
 use App\ServiceProviders\MailingProvider;
+use App\ServiceProviders\PaymentProvider;
+use App\User;
 
 include __DIR__ . '/vendor/autoload.php';
 
@@ -13,6 +14,7 @@ $serviceProviders = [
 	new LoggingProvider,
 	new MailingProvider,
 	new DraugiemApiProvider,
+	new PaymentProvider,
 ];
 
 // Register all service providers
@@ -20,11 +22,11 @@ foreach($serviceProviders as $v){
 	App::registerProvider($v);
 }
 
-$logger = App::make(Logger::class);
-
-var_dump($logger);
-
-
-var_dump(App::make(DraugiemApi::class));
-var_dump(App::make(DraugiemApi::class));
-var_dump(App::make(DraugiemApi::class));
+// Bind logged in user
+App::singleton(User::class, function (){
+	$user = new User();
+	$user->id = 777;
+	$user->email = 'mbriedis@gmail.com';
+	$user->name = 'Mârtiòð';
+	return $user;
+});

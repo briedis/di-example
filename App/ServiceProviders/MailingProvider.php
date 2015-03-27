@@ -5,6 +5,7 @@ namespace App\ServiceProviders;
 
 
 use App\App;
+use App\Interfaces\Logger;
 use App\Interfaces\Mailer;
 use App\Mailers\LogMailer;
 use Pimple\Container;
@@ -14,7 +15,8 @@ class MailingProvider implements ServiceProviderInterface{
 
 	public function register(Container $pimple){
 		App::bind(Mailer::class, function (){
-			return new LogMailer;
+			$logger = App::make(Logger::class);
+			return new LogMailer($logger);
 		});
 	}
 }
