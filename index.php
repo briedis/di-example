@@ -27,6 +27,6 @@ App::singleton(User::class, function (){
 	$user = new User();
 	$user->id = 777;
 	$user->email = 'mbriedis@gmail.com';
-	$user->name = 'Mârtiòğ';
+	$user->name = 'MÄrtiÅ†Å¡';
 	return $user;
 });

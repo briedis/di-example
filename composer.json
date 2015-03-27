@@ -2,7 +2,9 @@
 	"name": "briedis/di",
 	"require": {
 		"pimple/pimple": "~3.0",
-		"draugiem/draugiem-php-sdk": "~1.3"
+		"draugiem/draugiem-php-sdk": "~1.3",
+		"phpunit/phpunit": "~4.5",
+		"mockery/mockery": "0.9.*"
 	},
 	"autoload": {
 		"psr-4": {
